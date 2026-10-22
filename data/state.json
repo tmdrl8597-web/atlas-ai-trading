@@ -32,6 +32,6 @@
     "WMT": 120.6050033569336,
     "KO": 94.8949966430664
   },
-  "updated_at": "2026-10-22T18:41:12+00:00",
-  "status": "AI 분석 실패로 거래하지 않았습니다: Error code: 429 - {'error': {'message': 'You have no credits remaining. Add credits to continue using the API at https:/"
+  "updated_at": "2026-10-22T22:34:27+00:00",
+  "status": "미국 정규장 시간이 아니므로 주문하지 않았습니다."
 }
