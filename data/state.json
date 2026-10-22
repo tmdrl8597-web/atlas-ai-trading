@@ -1,0 +1,11 @@
+{
+  "initial_cash": 10000,
+  "cash": 10000,
+  "holdings": {},
+  "trades": [],
+  "snapshots": [],
+  "signals": [],
+  "prices": {},
+  "updated_at": null,
+  "status": "자동 분석을 설정하면 데이터가 채워집니다."
+}
