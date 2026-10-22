@@ -1,0 +1,32 @@
+name: Atlas AI paper trading
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 14,15,16,17,18,19,20 * * 1-5'
+permissions:
+  contents: write
+concurrency:
+  group: atlas-paper
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Refresh market data and decide paper trades
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-4.1-mini' }}
+        run: python bot.py
+      - name: Save paper trading results
+        run: |
+          git config user.name 'atlas-paper-bot'
+          git config user.email 'atlas-paper-bot@users.noreply.github.com'
+          git add data/state.json
+          if ! git diff --cached --quiet; then git commit -m 'Update paper trading ledger'; git push; fi
